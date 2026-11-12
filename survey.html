@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>استفتاء الماجستير المهني في التدريس</title>
+<style>
+:root{--bg:#f3f6f4;--card:#fff;--ink:#17302b;--mute:#5d726c;--line:#d5e0db;--main:#2f7a6b;--ok:#1e7d4f;--okbg:#e4f4ea;--no:#b3392f;--nobg:#fbe9e7;--warnbg:#fff3d6;--warn:#9a6a00;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101a17;--card:#17251f;--ink:#e6f1ed;--mute:#9db3ab;--line:#2b3f37;--main:#5fb7a3;--ok:#6fdc9f;--okbg:#173a28;--no:#ff9288;--nobg:#3d1d1a;--warnbg:#3a2f10;--warn:#f0c24d}}
+:root[data-theme="dark"]{--bg:#101a17;--card:#17251f;--ink:#e6f1ed;--mute:#9db3ab;--line:#2b3f37;--main:#5fb7a3;--ok:#6fdc9f;--okbg:#173a28;--no:#ff9288;--nobg:#3d1d1a;--warnbg:#3a2f10;--warn:#f0c24d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic","Noto Sans Arabic",Tahoma,sans-serif;line-height:1.7}
+main{max-width:560px;margin:0 auto;padding:18px 16px 40px}
+h1{font-size:1.4rem;line-height:1.35;margin:6px 0 4px;color:var(--main)}
+.sub{color:var(--mute);margin:0 0 14px;font-size:.9rem}
+.banner{background:var(--warnbg);color:var(--warn);border-radius:10px;padding:8px 12px;font-size:.85rem;margin-bottom:14px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px}
+.tabs button{font:inherit;font-weight:700;min-height:44px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--mute);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--main);color:#fff;border-color:var(--main)}
+:root:not([data-theme="light"]) .tabs button[aria-selected="true"]{color:#06201a}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
+label,.lbl{display:block;font-weight:600;margin:0 0 6px;font-size:.93rem}
+.field{margin-bottom:12px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input,select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);min-height:44px}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid var(--main);outline-offset:2px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg label{margin:0;text-align:center;padding:10px;border:1px solid var(--line);border-radius:8px;cursor:pointer;background:var(--bg);font-weight:600}
+.seg input:checked+label{background:var(--main);color:#fff;border-color:var(--main)}
+:root:not([data-theme="light"]) .seg input:checked+label{color:#06201a}
+.seg input:focus-visible+label{outline:3px solid var(--main);outline-offset:2px}
+.seg.st input[value="cand"]:checked+label{background:var(--ok);border-color:var(--ok)}
+.seg.st input[value="rej"]:checked+label{background:var(--no);border-color:var(--no)}
+.score{background:var(--okbg);color:var(--ok);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-weight:700}
+.score.empty{background:var(--bg);color:var(--mute);font-weight:400}
+.go{font:inherit;font-weight:700;width:100%;min-height:48px;border:0;border-radius:10px;background:var(--main);color:#fff;cursor:pointer}
+:root:not([data-theme="light"]) .go{color:#06201a}
+.msg{margin-top:10px;font-size:.92rem}.msg.err{color:var(--no)}.msg.ok{color:var(--ok)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.stat b{display:block;font-size:1.5rem;color:var(--main);line-height:1.3}
+.stat span{font-size:.82rem;color:var(--mute)}
+.stat.rej b{color:var(--no)}
+.wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:430px}
+th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:center}
+th{color:var(--mute);font-weight:600}
+td:first-child,th:first-child{text-align:right}
+.hidden{display:none}
+.mute{color:var(--mute);font-size:.85rem}
+</style>
+</head>
+<body>
+<main>
+<h1>استفتاء الماجستير المهني في التدريس</h1>
+<p class="sub">لمن وصلته رسالة ترشيح أو رفض فقط، وتختار حتى 3 رغبات. بيانات مجهولة، بدون أسماء.</p>
+<div id="demo" class="banner">وضع تجريبي: البيانات تُحفظ على جهازك فقط.</div>
+
+<div class="tabs" role="tablist">
+<button id="t1" role="tab" aria-selected="true">شارك نتيجتك</button>
+<button id="t2" role="tab" aria-selected="false">الإحصائيات</button>
+</div>
+
+<div id="p1">
+<div class="card">
+<div class="field"><label for="u1">الرغبة الأولى</label><select id="u1"></select></div>
+<div class="row field"><div><label for="u2">الرغبة الثانية</label><select id="u2"></select></div><div><label for="u3">الرغبة الثالثة</label><select id="u3"></select></div></div>
+<div class="field"><label for="spec">التخصص</label><select id="spec"></select></div>
+<div class="field"><span class="lbl">الجنس</span><div class="seg"><input type="radio" name="g" id="g1" value="m"><label for="g1">ذكر</label><input type="radio" name="g" id="g2" value="f"><label for="g2">أنثى</label></div></div>
+<div class="field"><span class="lbl">وش وصلك؟</span><div class="seg st"><input type="radio" name="s" id="s1" value="cand"><label for="s1">مرشح</label><input type="radio" name="s" id="s2" value="rej"><label for="s2">مرفوض</label></div></div>
+</div>
+<div class="card">
+<div class="row field"><div><label for="scale">نوع المعدل</label><select id="scale"><option value="5">من 5</option><option value="4">من 4</option><option value="100">من 100</option></select></div>
+<div><label for="gpa">المعدل</label><input id="gpa" type="number" inputmode="decimal" step="0.01" min="0" placeholder="4.2"></div></div>
+<div class="field"><label for="test">درجة اختبار التخصص (من 100)</label><input id="test" type="number" inputmode="decimal" step="0.01" min="0" max="100" placeholder="62"></div>
+<div style="position:absolute;left:-9999px" aria-hidden="true"><input id="hp" tabindex="-1" autocomplete="off"></div>
+<div id="score" class="score empty">درجة المفاضلة تظهر هنا</div>
+<button id="send" class="go" type="button">إرسال</button>
+<div id="msg" class="msg" aria-live="polite"></div>
+</div>
+<p class="mute">مشاركة واحدة لكل جهاز، وإرسال جديد يحدّث مشاركتك السابقة.</p>
+<p class="mute">المفاضلة من 40: اختبار التخصص 70% + المعدل 30%. المقابلة الشخصية غير محسوبة.</p>
+</div>
+
+<div id="p2" class="hidden">
+<div class="card">
+<div class="row field"><div><label for="fu">الجامعة</label><select id="fu"></select></div><div><label for="fs">التخصص</label><select id="fs"></select></div></div>
+<div class="field" style="margin:0"><label for="fg">الجنس</label><select id="fg"><option value="">الكل</option><option value="m">ذكر</option><option value="f">أنثى</option></select></div>
+</div>
+<div class="grid" id="sum"></div>
+<div class="card"><div class="wrap"><table><thead><tr><th>التخصص</th><th>مرشح</th><th>أقل قبول</th><th>أعلى قبول</th><th>مرفوض</th><th>أعلى رفض</th></tr></thead><tbody id="rows"></tbody></table></div></div>
+<p class="mute">الأرقام يدخلها المشاركون بأنفسهم وهي تقريبية وليست رسمية. الدرجة من 40. لا تظهر أقل وأعلى درجة حتى تتوفر 3 مشاركات على الأقل. فلتر الجامعة يعرض من اختار هذي الجامعة ضمن رغباته، لأن جامعة الترشيح لم تُعلن بعد.</p>
+</div>
+</main>
+<script>
+const UNIS=["جامعة الملك سعود - الرياض","جامعة الملك عبدالعزيز - جدة","جامعة الأميرة نورة بنت عبدالرحمن - الرياض","جامعة الملك خالد - أبها","جامعة الإمام عبدالرحمن بن فيصل - الدمام","جامعة تبوك - تبوك"];
+const SPECS=["الكيمياء","الرياضيات","الإنجليزية","العربية","الحاسب الآلي","التربية الاجتماعية والوطنية","التربية الإسلامية","الأحياء","العلوم","الفيزياء"];
+const API_URL='https://script.google.com/macros/s/AKfycbwwRv8fFuXikBLqQb9cgUzJDkh5RypRz3qqBrRNEj9d3xOE2TGEU_Ybx26a1FJuXTdR/exec'; /* الصق رابط Google Apps Script هنا (ينتهي بـ /exec) */
+const DEMO=!API_URL;
+const MIN=DEMO?1:3; /* أقل عدد مشاركات لإظهار الأرقام */
+const cid=(()=>{try{let c=localStorage.getItem('mpt_cid');if(!c){c=(crypto.randomUUID?crypto.randomUUID():Math.random().toString(36).slice(2)+Date.now());localStorage.setItem('mpt_cid',c)}return c}catch(e){return Math.random().toString(36).slice(2)+Date.now()}})();
+const Store=API_URL?{
+ async all(){const r=await fetch(API_URL);return r.json()},
+ async add(e){const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(e)});const j=await r.json();if(!j.ok)throw new Error(j.error);return j.updated}
+}:{
+ async all(){try{return JSON.parse(localStorage.getItem('mpt_entries')||'[]')}catch(e){return []}},
+ async add(e){const a=await this.all(),i=a.findIndex(x=>x.id===e.id);e.sc=r2(e.gpa/e.scale*100*0.12+e.test*0.28);if(i>=0)a[i]=e;else a.push(e);localStorage.setItem('mpt_entries',JSON.stringify(a));return i>=0}
+};
+
+const T0=Date.now();
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const r2=x=>Math.round(x*100)/100;
+const fill=(el,list,first)=>{el.innerHTML=(first!==undefined?'<option value="">'+first+'</option>':'')+list.map(x=>'<option>'+esc(x)+'</option>').join('')};
+fill($('u1'),UNIS,'اختر الجامعة');fill($('u2'),UNIS,'بدون');fill($('u3'),UNIS,'بدون');fill($('spec'),SPECS,'اختر التخصص');
+fill($('fu'),UNIS,'كل الجامعات');fill($('fs'),SPECS,'كل التخصصات');
+if(!DEMO)$('demo').classList.add('hidden');
+
+function calc(){const sc=+$('scale').value,g=parseFloat($('gpa').value),t=parseFloat($('test').value);
+ if(isNaN(g)||isNaN(t)||g<0||g>sc||t<0||t>100)return null;
+ return r2(g/sc*100*0.12+t*0.28)}
+function live(){const v=calc(),e=$('score');
+ if(v===null){e.className='score empty';e.textContent='درجة المفاضلة تظهر هنا'}
+ else{e.className='score';e.textContent='درجتك في المفاضلة: '+v+' من 40'}}
+['scale','gpa','test'].forEach(i=>$(i).addEventListener('input',live));
+
+function msg(t,c){$('msg').className='msg '+c;$('msg').textContent=t}
+const chosen=()=>[...new Set(['u1','u2','u3'].map(i=>$(i).value).filter(Boolean))];
+const status=()=>(document.querySelector('input[name=s]:checked')||{}).value;
+$('send').onclick=async()=>{
+ const p=chosen(),s=$('spec').value,g=(document.querySelector('input[name=g]:checked')||{}).value,st=status();
+ if(!$('u1').value||!s||!g||!st)return msg('عبّ الرغبة الأولى والتخصص والجنس والحالة.','err');
+ if(p.length<[$('u1').value,$('u2').value,$('u3').value].filter(Boolean).length)return msg('لا تكرر نفس الجامعة في أكثر من رغبة.','err');
+ const gv=parseFloat($('gpa').value),sc=+$('scale').value,tv=parseFloat($('test').value);
+ if(isNaN(gv)||gv<0||gv>sc)return msg('المعدل يجب أن يكون بين 0 و '+sc,'err');
+ if(isNaN(tv)||tv<0||tv>100)return msg('درجة الاختبار يجب أن تكون بين 0 و 100','err');
+ const sco=calc();
+ if($('hp').value||Date.now()-T0<6000)return msg('تم الإرسال، شكراً لمشاركتك.','ok');
+ try{const upd=await Store.add({id:DEMO?Math.random().toString(36).slice(2)+Date.now():cid,p,s,g,st,scale:sc,gpa:gv,test:tv});msg((upd?'تم تحديث مشاركتك السابقة (مشاركة واحدة لكل جهاز). ':'تم الإرسال، شكراً لمشاركتك. ')+'درجتك '+sco+' من 40.','ok');
+  ['gpa','test'].forEach(i=>$(i).value='');live();
+ }catch(e){msg('تعذر الحفظ، حاول مرة ثانية.','err')}
+};
+
+const stat=(n,l,c)=>'<div class="stat '+(c||'')+'"><b>'+n+'</b><span>'+l+'</span></div>';
+const mn=a=>a.length>=MIN?r2(Math.min(...a)):'—',mx=a=>a.length>=MIN?r2(Math.max(...a)):'—';
+async function stats(){
+ const fu=$('fu').value,fs=$('fs').value,fg=$('fg').value;
+ let all;try{all=await Store.all()}catch(e){$('rows').innerHTML='<tr><td colspan="6" class="mute">تعذر تحميل البيانات، حدّث الصفحة.</td></tr>';return}
+ const d=all.map(e=>({...e,p:e.p||[e.u]})).filter(e=>(!fu||e.p.includes(fu))&&(!fs||e.s===fs)&&(!fg||e.g===fg));
+ const cd=d.filter(e=>e.st==='cand'),rd=d.filter(e=>e.st==='rej'),c=cd.map(e=>e.sc);
+ $('sum').innerHTML=stat(cd.length,'مرشح')+stat(rd.length,'مرفوض','rej')+stat(mn(c),'أقل درجة قبول')+stat(mx(c),'أعلى درجة قبول');
+ const G={};d.forEach(e=>{const o=G[e.s]=G[e.s]||{s:e.s,c:[],j:[]};o[e.st==='cand'?'c':'j'].push(e.sc)});
+ const rows=Object.values(G).sort((a,b)=>(b.c.length+b.j.length)-(a.c.length+a.j.length));
+ $('rows').innerHTML=rows.length?rows.map(x=>'<tr><td>'+esc(x.s)+'</td><td>'+x.c.length+'</td><td>'+mn(x.c)+'</td><td>'+mx(x.c)+'</td><td>'+x.j.length+'</td><td>'+mx(x.j)+'</td></tr>').join(''):'<tr><td colspan="6" class="mute">لا توجد بيانات بعد.</td></tr>';
+}
+['fu','fs','fg'].forEach(i=>$(i).addEventListener('input',stats));
+
+function tab(n){[1,2].forEach(i=>{$('p'+i).classList.toggle('hidden',i!==n);$('t'+i).setAttribute('aria-selected',i===n)});if(n===2)stats()}
+$('t1').onclick=()=>tab(1);$('t2').onclick=()=>tab(2);
+</script>
+</body>
+</html>
