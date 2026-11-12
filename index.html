@@ -49,6 +49,7 @@ th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:center}
 th{color:var(--mute);font-weight:600}
 td:first-child,th:first-child{text-align:right}
 .hidden{display:none}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);opacity:0;pointer-events:none}
 .mute{color:var(--mute);font-size:.85rem}
 </style>
 </head>
@@ -75,7 +76,7 @@ td:first-child,th:first-child{text-align:right}
 <div class="row field"><div><label for="scale">نوع المعدل</label><select id="scale"><option value="5">من 5</option><option value="4">من 4</option><option value="100">من 100</option></select></div>
 <div><label for="gpa">المعدل</label><input id="gpa" type="number" inputmode="decimal" step="0.01" min="0" placeholder="4.2"></div></div>
 <div class="field"><label for="test">درجة اختبار التخصص (من 100)</label><input id="test" type="number" inputmode="decimal" step="0.01" min="0" max="100" placeholder="62"></div>
-<div style="position:absolute;left:-9999px" aria-hidden="true"><input id="hp" tabindex="-1" autocomplete="off"></div>
+<div class="hp" aria-hidden="true"><input id="hp" tabindex="-1" autocomplete="off"></div>
 <div id="score" class="score empty">درجة المفاضلة تظهر هنا</div>
 <button id="send" class="go" type="button">إرسال</button>
 <div id="msg" class="msg" aria-live="polite"></div>
